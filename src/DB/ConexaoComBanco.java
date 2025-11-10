@@ -3,13 +3,13 @@ package DB;
 import java.sql.*;
 
 public class ConexaoComBanco {
-    private final String DRIVE = "com.mysql.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3306/oficina";
-    private final String USER = "root";
-    private final String PASS = "";
+    private static final String DRIVE = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/oficina";
+    private static final String USER = "root";
+    private static final String PASS = "";
 
     // metodo de conexão com o banco de dados
-    public Connection getConnection(){
+    public static Connection getConnection(){
         try {
             Class.forName(DRIVE);
 
