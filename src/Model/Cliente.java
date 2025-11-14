@@ -5,6 +5,17 @@ public class Cliente {
     private String cpf;
     private String idade;
     private String telefone;
+    private boolean vip;
+
+    
+    
+    public Cliente(String nome, String cpf, String idade, String telefone, boolean vip) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.idade = idade;
+        this.telefone = telefone;
+        this.vip = vip;
+    }
 
     public String getNome() {
         return nome;
@@ -36,5 +47,13 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
 }
