@@ -5,16 +5,18 @@ public class Cliente {
     private String cpf;
     private String idade;
     private String telefone;
+    private int id;
     private boolean vip;
 
     
     
-    public Cliente(String nome, String cpf, String idade, String telefone, boolean vip) {
+    public Cliente(String nome, String cpf, String idade, String telefone,int id, boolean vip) {
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
         this.telefone = telefone;
         this.vip = vip;
+        this.id = id;
     }
 
     public String getNome() {
@@ -55,5 +57,9 @@ public class Cliente {
 
     public void setVip(boolean vip) {
         this.vip = vip;
+    }
+
+    public int getId() {
+        return id;
     }
 }

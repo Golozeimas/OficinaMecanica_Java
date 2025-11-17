@@ -8,7 +8,7 @@ public class Veiculo {
     private String modelo;
     private String ano;
     private String placa;
-    private List<String> historicoManutencoes;    
+    private List<Integer> historicoManutencoes;    
 
     //Cria um veiculo novo a cada instacia de objeto
     public Veiculo(int idVeiculo, int clienteId, String modelo, String ano, String placa) {
@@ -63,13 +63,13 @@ public class Veiculo {
 
 
     //Retorna o historico de manutenções. UML -> consultarHistoricoDoVeiculo()
-    public List<String> getHistoricoManutencoes() {
+    public List<Integer> getHistoricoManutencoes() {
         return historicoManutencoes;
     }
 
     //Atualiza o historico de manutencoes
-    public void addHistoricoManutencoes(String manutencao) {
-        this.historicoManutencoes.add(manutencao);
+    public void addHistoricoManutencoes(int idManutencao) {
+        this.historicoManutencoes.add(idManutencao);
     }
 
     

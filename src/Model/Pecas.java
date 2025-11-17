@@ -8,10 +8,16 @@ public class Pecas {
     private String codigo;
     private String fornecedor;
     
-    public boolean verificarDisponibilidade(){return qtdEstoque > 0 ? true : false;}
+    public Pecas(int idPeca, int qtdEstoque, String nome, String codigo, String fornecedor) {
+        this.idPeca = idPeca; 
+        this.qtdEstoque = qtdEstoque;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.fornecedor = fornecedor;
+    }
     public void addEstoque(int qtd){ 
         if (qtd > 0) {
-         this.qtdEstoque += qtd;   
+            this.qtdEstoque += qtd;   
         }else{
             System.out.println("Insira uma quantidade válida");
         }
@@ -30,17 +36,8 @@ public class Pecas {
             System.out.println("Insira uma quantidade válida");
         }
     }
-
-
+    public boolean verificarDisponibilidade(){return qtdEstoque > 0 ? true : false;}
     
-    
-    public Pecas(int idPeca, int qtdEstoque, String nome, String codigo, String fornecedor) {
-        this.idPeca = idPeca; 
-        this.qtdEstoque = qtdEstoque;
-        this.nome = nome;
-        this.codigo = codigo;
-        this.fornecedor = fornecedor;
-    }
     public int getIdPeca() {
         return idPeca;
     }
