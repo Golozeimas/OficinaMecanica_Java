@@ -27,4 +27,12 @@ public class Alertas {
         alert.setContentText(erro);
         alert.showAndWait();
     }
+
+    public void mostrarErroTelefone(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro no número de telefone");
+        alert.setHeaderText("Erro no telefone, verifique o número");
+        alert.setContentText("Erro no telefone");
+        alert.showAndWait();
+    }
 }

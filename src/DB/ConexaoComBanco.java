@@ -6,7 +6,7 @@ public class ConexaoComBanco {
     private static final String DRIVE = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/oficina";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "Matheusgolo21102005";
 
     // metodo de conexão com o banco de dados
     public static Connection getConnection(){
@@ -47,7 +47,7 @@ public class ConexaoComBanco {
     // uso de sobrecarga para tratar os diversos tipos de fechamentos
     public static void fechaConexao(Connection connection, PreparedStatement ps, ResultSet rs){
 
-        fechaConexao(connection, ps, rs);
+        fechaConexao(connection, ps);
         try{
             if (rs != null){
                 rs.close();

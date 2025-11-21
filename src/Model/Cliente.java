@@ -1,54 +1,43 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Cliente {
-    private String nome;
-    private String cpf;
-    private String idade;
-    private String telefone;
-    private int id;
-    private boolean vip;
+    private SimpleStringProperty nome;
+    private SimpleStringProperty cpf;
+    private SimpleStringProperty idade;
+    private SimpleStringProperty telefone;
 
-    
-    
-    public Cliente(String nome, String cpf, String idade, String telefone,int id, boolean vip) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.idade = idade;
-        this.telefone = telefone;
-        this.vip = vip;
-        this.id = id;
-    }
-
-    public String getNome() {
+    public SimpleStringProperty getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome.set(nome);
     }
 
-    public String getCpf() {
+    public SimpleStringProperty getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf.set(cpf);
     }
 
-    public String getIdade() {
+    public SimpleStringProperty getIdade() {
         return idade;
     }
 
     public void setIdade(String idade) {
-        this.idade = idade;
+        this.idade.set(idade);
     }
 
-    public String getTelefone() {
+    public SimpleStringProperty getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.telefone.set(telefone);
     }
 
     public boolean isVip() {
