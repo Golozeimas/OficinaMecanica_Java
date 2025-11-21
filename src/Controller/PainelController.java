@@ -1,14 +1,21 @@
 package Controller;
 
-import DB.ConexaoComBanco;
-import Model.Cliente;
+
+import Model.MudarTela;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class PainelController {
+
+    @FXML
+    private Button botaoAdicionar;
 
     @FXML
     private TableColumn<?, ?> colCpf;
@@ -23,9 +30,6 @@ public class PainelController {
     private TableColumn<?, ?> colTelefone;
 
     @FXML
-    private Label dataHora;
-
-    @FXML
     private Label lblUsuario;
 
     @FXML
@@ -35,7 +39,5 @@ public class PainelController {
     private TextField txtBusca;
 
 
-    public void mostrarClientes(Cliente cliente){
-    }
 
 }

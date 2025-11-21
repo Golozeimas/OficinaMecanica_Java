@@ -1,11 +1,14 @@
 package Controller;
 
+import Model.MudarTela;
 import Model.Validacoes;
 import Templates.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class AdicionarClientesController {
 
@@ -46,8 +49,8 @@ public class AdicionarClientesController {
     }
 
     @FXML
-    void voltarParaPainel(ActionEvent event) {
-
+    void voltarParaPainel(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
     }
 
 }

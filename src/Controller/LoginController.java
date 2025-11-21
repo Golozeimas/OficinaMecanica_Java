@@ -21,9 +21,6 @@ import java.sql.SQLException;
 public class LoginController {
 
         @FXML
-        private Button botaoLogin;
-
-        @FXML
         private TextField emailDoLogin;
         @FXML
         private PasswordField senhaDoLogin;
@@ -45,7 +42,7 @@ public class LoginController {
         ResultSet resultadoDaQuery = null;
         if (isValidEmail) {
             try {
-                stmt = conexao.prepareStatement("SELECT * FROM administrador WHERE email = ? AND senha = ?"); // previne de SQL injection
+                stmt = conexao.prepareStatement("SELECT * FROM administrador WHERE email_adm = ? AND senha = ?"); // previne de SQL injection
                 stmt.setString(1, administrador.getEmail());
                 stmt.setString(2, administrador.getSenha());
 

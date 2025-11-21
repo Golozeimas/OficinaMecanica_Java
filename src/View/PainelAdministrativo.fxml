@@ -86,7 +86,7 @@
 
             <!-- Barra de Ferramentas -->
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Button style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Adicionar" />
+                <Button fx:id="botaoAdicionar" onAction="#irParaAdicionar" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Adicionar" />
                 <Button style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />
                 <Button style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Excluir" />
                 <Separator orientation="VERTICAL" />
@@ -94,8 +94,6 @@
                 <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
                 <Button text="Limpar" />
             </HBox>
-
-            PainelAdministrativo.fxml
             <TableView fx:id="tabelaDados" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
@@ -113,7 +111,6 @@
     <bottom>
         <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #34495e; -fx-padding: 10;">
             <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="dataHora" text="13/11/2025 10:30" textFill="WHITE" />
         </HBox>
     </bottom>
 

@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class Validacoes {
 
     public boolean validarTelefone(String telefone){
+        // regex que deixa apenas os números em uma string
         String comApenasOsNumeros = telefone.replaceAll("\\D+", "");
         if(comApenasOsNumeros.length() == 11){
             return true;
