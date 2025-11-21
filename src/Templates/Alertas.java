@@ -4,11 +4,11 @@ import javafx.scene.control.Alert;
 
 public class Alertas {
 
-    public void mostrarConfirmacao(){
+    public void mostrarConfirmacao(String alerta){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informação");
         alert.setHeaderText("Operação realizado com sucesso!" );
-        alert.setContentText("Login realizado com sucesso");
+        alert.setContentText(alerta);
         alert.showAndWait();
     }
 

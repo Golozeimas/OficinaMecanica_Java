@@ -52,7 +52,7 @@ public class LoginController {
                 resultadoDaQuery = stmt.executeQuery();
 
                 if (resultadoDaQuery.next()){
-                    alerta.mostrarConfirmacao();
+                    alerta.mostrarConfirmacao("Login realizado com sucesso");
                     MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
                 }
                 else {

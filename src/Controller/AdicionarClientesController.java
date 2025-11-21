@@ -1,5 +1,6 @@
 package Controller;
 
+import DB.ClienteDAO;
 import Model.MudarTela;
 import Model.Validacoes;
 import Templates.Alertas;
@@ -30,7 +31,7 @@ public class AdicionarClientesController {
     }
 
     @FXML
-    void salvarCliente(ActionEvent event) {
+    void salvarCliente(ActionEvent event) throws IOException {
         Alertas alertas = new Alertas();
         Validacoes validacoes = new Validacoes();
         String nome = txtNome.getText();
@@ -38,15 +39,19 @@ public class AdicionarClientesController {
         String telefone = txtTelefone.getText();
 
         boolean isTelefoneValido = validacoes.validarTelefone(telefone);
+        boolean isCpfValido = validacoes.validarCPF(cpf);
 
         // adicionar validação no cpf também
-        if (isTelefoneValido){
-
-
+        if (isTelefoneValido && isCpfValido){
+            ClienteDAO.adicionarCliente(nome,cpf,telefone);
+            alertas.mostrarConfirmacao("Cliente salvo com sucesso");
+            MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
         }else{
             alertas.mostrarErroTelefone();
         }
     }
+
+
 
     @FXML
     void voltarParaPainel(ActionEvent event) throws IOException {

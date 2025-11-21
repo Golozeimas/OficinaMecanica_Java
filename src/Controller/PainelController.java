@@ -39,5 +39,8 @@ public class PainelController {
     private TextField txtBusca;
 
 
-
+    @FXML
+    void irParaAdicionar(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/view/AdicionarClientes.fxml");
+    }
 }

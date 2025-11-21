@@ -27,6 +27,14 @@ public class Validacoes {
         return matcher.matches(); // retorna se o email está correto ou não
     }
 
+    public boolean validarCPF(String cpf) {
+        String cpfLimpo = cpf.replaceAll("\\D+", "");
+        if (cpfLimpo.length() != 11) {
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
     }
 }
