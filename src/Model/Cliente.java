@@ -39,4 +39,16 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone.set(telefone);
     }
+
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
