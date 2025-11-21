@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ClienteDAO {
 
     // função testada funcionando normalmente
-    public static void adicionarCliente (String nome, String cpf, String telefone){
+    public static void adicionarCliente(String nome, String cpf, String telefone){
         Connection conexao = ConexaoComBanco.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -27,11 +27,22 @@ public class ClienteDAO {
     }
 
     public static void mostrarClientes(){
-        Connection conexao = ConexaoComBanco.getConnection();
-        PreparedStatement stmt = null;
+
     }
 
-    public static void deletarClientes(){
+    public static void deletarCliente(int id){
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conexao.prepareStatement("DELETE FROM clientes WHERE id=?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro no banco de dados" + e);
+        }finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt);
+        }
 
     }
 

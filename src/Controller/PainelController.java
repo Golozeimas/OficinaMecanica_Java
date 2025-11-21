@@ -15,9 +15,6 @@ import java.io.IOException;
 public class PainelController {
 
     @FXML
-    private Button botaoAdicionar;
-
-    @FXML
     private TableColumn<?, ?> colCpf;
 
     @FXML
@@ -43,4 +40,5 @@ public class PainelController {
     void irParaAdicionar(ActionEvent event) throws IOException {
         MudarTela.trocarJanela(event, "/view/AdicionarClientes.fxml");
     }
+
 }

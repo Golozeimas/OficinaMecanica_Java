@@ -25,10 +25,6 @@ public class AdicionarClientesController {
     @FXML
     private TextField txtTelefone;
 
-    @FXML
-    void limparCampos(ActionEvent event) {
-
-    }
 
     @FXML
     void salvarCliente(ActionEvent event) throws IOException {
