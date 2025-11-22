@@ -1,6 +1,7 @@
 package DB;
 
 import Model.Cliente;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,16 +36,19 @@ public class ClienteDAO {
 
     }
 
-    public static void deletarCliente(int id){
+    public static boolean deletarCliente(String id){
         Connection conexao = ConexaoComBanco.getConnection();
         PreparedStatement stmt = null;
+        // gambiarra primeiro passando para inteiro
+        int idTransformado = Integer.valueOf(id);
         try {
-            stmt = conexao.prepareStatement("DELETE FROM clientes WHERE id_cliente=?");
-            stmt.setInt(1, id);
+            stmt = conexao.prepareStatement("DELETE FROM cliente WHERE id_cliente=?");
+            stmt.setInt(1, idTransformado);
             stmt.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             System.out.println("Erro no banco de dados: " + e);
+            return false;
         }finally {
             ConexaoComBanco.fechaConexao(conexao, stmt);
         }

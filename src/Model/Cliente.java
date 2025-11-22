@@ -1,8 +1,7 @@
 package Model;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class Cliente {
     private SimpleStringProperty id;
@@ -11,8 +10,7 @@ public class Cliente {
     private SimpleStringProperty telefone;
     private SimpleBooleanProperty isVip;
 
-
-    public Cliente(String id, String nome, String cpf, String telefone, boolean isVip){
+    public Cliente(String id, String nome, String cpf, String telefone, boolean isVip) {
         this.id = new SimpleStringProperty(id);
         this.nome = new SimpleStringProperty(nome);
         this.cpf = new SimpleStringProperty(cpf);
@@ -29,39 +27,73 @@ public class Cliente {
         this.isVip = new SimpleBooleanProperty(isVip);
     }
 
-    public SimpleStringProperty getId() {
+    public Cliente() {
+        this.id = new SimpleStringProperty("");
+        this.nome = new SimpleStringProperty("");
+        this.cpf = new SimpleStringProperty("");
+        this.telefone = new SimpleStringProperty("");
+        this.isVip = new SimpleBooleanProperty(false);
+    }
+
+    // Getters para as Properties (para TableView)
+    public SimpleStringProperty idProperty() {
         return id;
+    }
+
+    public SimpleStringProperty nomeProperty() {
+        return nome;
+    }
+
+    public SimpleStringProperty cpfProperty() {
+        return cpf;
+    }
+
+    public SimpleStringProperty telefoneProperty() {
+        return telefone;
+    }
+
+    public SimpleBooleanProperty isVipProperty() {
+        return isVip;
+    }
+
+    // Getters e Setters normais
+    public String getId() {
+        return id.get();
     }
 
     public void setId(String id) {
         this.id.set(id);
     }
 
-    public SimpleStringProperty getNome() {
-        return nome;
+    public String getNome() {
+        return nome.get();
     }
 
     public void setNome(String nome) {
         this.nome.set(nome);
     }
 
-    public SimpleStringProperty getCpf() {
-        return cpf;
+    public String getCpf() {
+        return cpf.get();
     }
 
     public void setCpf(String cpf) {
         this.cpf.set(cpf);
     }
 
-    public SimpleStringProperty getTelefone() {
-        return telefone;
+    public String getTelefone() {
+        return telefone.get();
     }
 
     public void setTelefone(String telefone) {
         this.telefone.set(telefone);
     }
-    public SimpleBooleanProperty isVipProperty() {
-        return isVip;
+
+    public boolean isVip() {
+        return isVip.get();
     }
 
+    public void setVip(boolean vip) {
+        isVip.set(vip);
+    }
 }
