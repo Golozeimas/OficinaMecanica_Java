@@ -44,10 +44,10 @@
             </Label>
 
             <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Clientes" />
-            <Button fx:id="ordemDeServico" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Ordens De Serviços" />
-            <Button fx:id="pecas" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Peças" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Vendas" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
+            <Button fx:id="ordemDeServico" maxWidth="Infinity" onAction="#irParaVeiculos" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Veiculos" />
+            <Button fx:id="pecas" maxWidth="Infinity" onAction="#irParaPecas" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Peças" />
+            <Button maxWidth="Infinity" onAction="#irParaOrdem" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Ordens de serviço" />
+            <Button maxWidth="Infinity" onAction="#irParaRelatorios" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
             <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Configurações" />
 
             <Region VBox.vgrow="ALWAYS" />
