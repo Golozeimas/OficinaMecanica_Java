@@ -3,12 +3,18 @@ package Controller;
 import DB.VeiculoDAO;
 import Model.MudarTela;
 import Model.Veiculo;
+import Templates.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +43,8 @@ public class VeiculoController implements Initializable {
     @FXML
     private TableView<Veiculo> tabelaVeiculos;
 
+    Alertas alertas = new Alertas();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colId.setCellValueFactory(data -> data.getValue().idProperty());
@@ -58,8 +66,24 @@ public class VeiculoController implements Initializable {
     }
 
     @FXML
-    void verHistorico(ActionEvent event) {
+    void verHistorico(ActionEvent event) throws IOException {
+        Veiculo veiculoSelecionado = tabelaVeiculos.getSelectionModel().getSelectedItem();
 
+        if (veiculoSelecionado == null) {
+            alertas.mostrarErro("Selecione um veículo para ver o histórico!");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HistoricoVeiculo.fxml"));
+        Parent root = loader.load();
+
+        HistoricoVeiculoController controller = loader.getController();
+        controller.carregarDadosVeiculo(veiculoSelecionado);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setFullScreen(true);
+        stage.show();
     }
 
     @FXML
