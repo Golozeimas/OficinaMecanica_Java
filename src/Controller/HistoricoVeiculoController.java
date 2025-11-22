@@ -1,6 +1,6 @@
 package Controller;
 
-import DB.OrdemServico;
+import DB.OrdemServicoDAO;
 import Model.OrdemDeServico;
 import Model.Veiculo;
 import Templates.Alertas;
@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.text.DecimalFormat;
 
 public class HistoricoVeiculoController {
 
@@ -73,7 +75,18 @@ public class HistoricoVeiculoController {
 
 
     }
-        @FXML
+
+    private void carregarOrdens() {
+
+        tabelaOrdens.setItems(OrdemServicoDAO.listarOrdensPorVeiculo(veiculoSelecionado.getId()));
+
+        lblTotalServicos.setText(String.valueOf(tabelaOrdens.getItems().size()));
+
+        double valorTotal = OrdemServicoDAO.calcularValorTotalVeiculo(veiculoSelecionado.getId());
+        DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+        lblValorTotal.setText(df.format(valorTotal));
+    }
+    @FXML
     void excluirOrdem(ActionEvent event) {
         OrdemDeServico ordemSelecionada = tabelaOrdens.getSelectionModel().getSelectedItem();
         if (ordemSelecionada == null){
@@ -81,7 +94,7 @@ public class HistoricoVeiculoController {
             return;
         }
 
-        boolean sucesso = OrdemServico.deletarOrdem(ordemSelecionada.getIdOrdem());
+        boolean sucesso = OrdemServicoDAO.deletarOrdem(ordemSelecionada.getIdOrdem());
 
         if (sucesso){
             alertas.mostrarConfirmacao("Ordem apagada com sucesso!");
@@ -90,6 +103,7 @@ public class HistoricoVeiculoController {
         }
 
     }
+
 
     @FXML
     void novaOrdemServico(ActionEvent event) {

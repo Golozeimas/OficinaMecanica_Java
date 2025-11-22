@@ -1,0 +1,91 @@
+package DB;
+
+import Model.OrdemDeServico;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+
+public class OrdemServicoDAO {
+
+    public static boolean deletarOrdem(String idOrdem) {
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conexao.prepareStatement("DELETE FROM ordem_servico WHERE id_ordem=?");
+            stmt.setInt(1, Integer.parseInt(idOrdem));
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar ordem: " + e.getMessage());
+            return false;
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt);
+        }
+    }
+
+    public static ObservableList<OrdemDeServico> listarOrdensPorVeiculo(String idVeiculo) {
+        ObservableList<OrdemDeServico> listaOrdens = FXCollections.observableArrayList();
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT o.id_ordem, o.id_veiculo, o.descricao, o.valor_mao_obra, o.status, " +
+                    "o.data_abertura, o.data_finalizacao, " +
+                    "(o.valor_mao_obra + COALESCE((SELECT SUM(op.quantidade * op.preco_unitario) " +
+                    "FROM ordem_peca op WHERE op.id_ordem = o.id_ordem), 0)) as valor_total " +
+                    "FROM ordem_servico o " +
+                    "WHERE o.id_veiculo = ? " +
+                    "ORDER BY o.data_abertura DESC";
+
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(idVeiculo));
+            rs = stmt.executeQuery();
+
+            DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+
+            while (rs.next()) {
+                String dataFinal = rs.getString("data_finalizacao");
+                if (dataFinal == null) {
+                    dataFinal = "-";
+                }
+
+                OrdemDeServico ordem = new OrdemDeServico(
+                        rs.getString("id_ordem"),
+                        rs.getString("id_veiculo"),
+                        rs.getString("descricao"),
+                        df.format(rs.getDouble("valor_mao_obra")),
+                        rs.getString("status"),
+                        rs.getString("data_abertura"),
+                        dataFinal,
+                        df.format(rs.getDouble("valor_total"))
+                );
+                listaOrdens.add(ordem);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar ordens: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt, rs);
+        }
+
+        return listaOrdens;
+    }
+
+    public static double calcularValorTotalVeiculo(String idVeiculo) {
+        return 1;
+    }
+
+}
+
+
+
