@@ -7,11 +7,16 @@ import Model.MudarTela;
 import Templates.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +67,28 @@ public class PainelController implements Initializable {
     }
 
     @FXML
+    void irParaEditar(ActionEvent event) throws IOException {
+        Cliente clienteSelecionado = tabelaDados.getSelectionModel().getSelectedItem();
+
+        if (clienteSelecionado == null){
+            alertas.mostrarErro("Selecione um cliente para editar");
+        }
+
+        // Não podemos usar a classe mudar de tela pq precisamos carregar dados do cliente antes
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/MudarClientes.fxml"));
+        Parent root = loader.load();
+
+        MudarClientesController controller = loader.getController();
+        controller.carregarDadosCliente(clienteSelecionado);
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setFullScreen(true);
+        stage.show();
+    }
+
+    @FXML
     void excluirCliente(ActionEvent event){
         // pega o item que tu seleciona da tabela, é metodo do JavaFX também
         Cliente clienteSelecionado = tabelaDados.getSelectionModel().getSelectedItem();
@@ -74,6 +101,8 @@ public class PainelController implements Initializable {
 
         if (clienteExcluido){
             alertas.mostrarConfirmacao("cliente deletado com SUCESSO");
+            // para atualizar a tabela
+            carregarClientes();
         }else {
             alertas.mostrarErro("Não foi possível deletar o cliente");
         }

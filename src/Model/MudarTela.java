@@ -17,6 +17,8 @@ public class MudarTela {
         Parent root = FXMLLoader.load(MudarTela.class.getResource(fxml));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
+        // garante que a tela fique cheia após a troca
+        stage.setFullScreen(true);
         stage.show();
     }
 }

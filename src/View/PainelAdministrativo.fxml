@@ -62,7 +62,7 @@
             <!-- Barra de Ferramentas -->
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <Button fx:id="botaoAdicionar" onAction="#irParaAdicionar" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Adicionar" />
-                <Button style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />
+                <Button onAction="#irParaEditar" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />
                 <Button onAction="#excluirCliente" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Excluir" />
                 <Separator orientation="VERTICAL" />
                 <TextField fx:id="txtBusca" prefWidth="250.0" promptText="Buscar..." />
