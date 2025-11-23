@@ -1,11 +1,14 @@
 package Controller;
 
+import Model.MudarTela;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.io.IOException;
 
 public class OrdensServicoController {
 
@@ -58,8 +61,8 @@ public class OrdensServicoController {
     }
 
     @FXML
-    void irParaVeiculos(ActionEvent event) {
-
+    void irParaVeiculos(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/Veiculos.fxml");
     }
 
     @FXML
@@ -68,8 +71,8 @@ public class OrdensServicoController {
     }
 
     @FXML
-    void voltarParaPainel(ActionEvent event) {
-
+    void voltarParaPainel(ActionEvent event) throws IOException{
+        MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
     }
 
 }
