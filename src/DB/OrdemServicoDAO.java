@@ -112,6 +112,58 @@ public class OrdemServicoDAO {
      return total;
     }
 
+    public static ObservableList<OrdemDeServico> listarTodasOrdens() {
+        ObservableList<OrdemDeServico> listaOrdens = FXCollections.observableArrayList();
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT o.id_ordem, o.id_veiculo, o.descricao, o.valor_mao_obra, o.status, " +
+                    "o.data_abertura, o.data_finalizacao, v.placa, c.nome_cliente, " +
+                    "(o.valor_mao_obra + COALESCE((SELECT SUM(op.quantidade * op.preco_unitario) " +
+                    "FROM ordem_peca op WHERE op.id_ordem = o.id_ordem), 0)) as valor_total " +
+                    "FROM ordem_servico o " +
+                    "INNER JOIN veiculo v ON o.id_veiculo = v.id_veiculo " +
+                    "INNER JOIN cliente c ON v.id_cliente = c.id_cliente " +
+                    "ORDER BY o.data_abertura DESC";
+
+            stmt = conexao.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+
+            while (rs.next()) {
+                String dataFinal = rs.getString("data_finalizacao");
+                if (dataFinal == null) {
+                    dataFinal = "-";
+                }
+
+                OrdemDeServico ordem = new OrdemDeServico(
+                        rs.getString("id_ordem"),
+                        rs.getString("id_veiculo"),
+                        rs.getString("descricao"),
+                        df.format(rs.getDouble("valor_mao_obra")),
+                        rs.getString("status"),
+                        rs.getString("data_abertura"),
+                        dataFinal,
+                        df.format(rs.getDouble("valor_total")),
+                        rs.getString("placa"),
+                        rs.getString("nome_cliente")
+                );
+                listaOrdens.add(ordem);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar ordens: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt, rs);
+        }
+
+        return listaOrdens;
+    }
+
+
 }
 
 

@@ -1,6 +1,7 @@
 package Controller;
 
 import DB.OrdemServicoDAO;
+import Model.MudarTela;
 import Model.OrdemDeServico;
 import Model.Veiculo;
 import Templates.Alertas;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class HistoricoVeiculoController {
@@ -106,8 +108,8 @@ public class HistoricoVeiculoController {
 
 
     @FXML
-    void novaOrdemServico(ActionEvent event) {
-
+    void novaOrdemServico(ActionEvent event) throws IOException{
+        MudarTela.trocarJanela(event, "/View/CriarOrdemServico.fxml");
     }
 
     @FXML
@@ -116,8 +118,8 @@ public class HistoricoVeiculoController {
     }
 
     @FXML
-    void voltarParaVeiculos(ActionEvent event) {
-
+    void voltarParaVeiculos(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/Veiculos.fxml");
     }
 
 }

@@ -11,10 +11,12 @@ public class OrdemDeServico {
     private SimpleStringProperty dataAbertura;
     private SimpleStringProperty dataFinalizacao;
     private SimpleStringProperty valorTotal;
+    private SimpleStringProperty veiculoPlaca;
+    private SimpleStringProperty clienteNome;
 
-    // Construtor completo
     public OrdemDeServico(String idOrdem, String idVeiculo, String descricao, String valorMaoObra,
-                        String status, String dataAbertura, String dataFinalizacao, String valorTotal) {
+                        String status, String dataAbertura, String dataFinalizacao, String valorTotal,
+                        String veiculoPlaca, String clienteNome) {
         this.idOrdem = new SimpleStringProperty(idOrdem);
         this.idVeiculo = new SimpleStringProperty(idVeiculo);
         this.descricao = new SimpleStringProperty(descricao);
@@ -23,9 +25,15 @@ public class OrdemDeServico {
         this.dataAbertura = new SimpleStringProperty(dataAbertura);
         this.dataFinalizacao = new SimpleStringProperty(dataFinalizacao);
         this.valorTotal = new SimpleStringProperty(valorTotal);
+        this.veiculoPlaca = new SimpleStringProperty(veiculoPlaca);
+        this.clienteNome = new SimpleStringProperty(clienteNome);
     }
 
-    // Properties para TableView
+    public OrdemDeServico(String idOrdem, String idVeiculo, String descricao, String valorMaoObra,
+                        String status, String dataAbertura, String dataFinalizacao, String valorTotal) {
+        this(idOrdem, idVeiculo, descricao, valorMaoObra, status, dataAbertura, dataFinalizacao, valorTotal, "", "");
+    }
+
     public SimpleStringProperty idOrdemProperty() {
         return idOrdem;
     }
@@ -58,7 +66,14 @@ public class OrdemDeServico {
         return valorTotal;
     }
 
-    // Getters e Setters
+    public SimpleStringProperty veiculoPlacaProperty() {
+        return veiculoPlaca;
+    }
+
+    public SimpleStringProperty clienteNomeProperty() {
+        return clienteNome;
+    }
+
     public String getIdOrdem() {
         return idOrdem.get();
     }
@@ -121,5 +136,21 @@ public class OrdemDeServico {
 
     public void setValorTotal(String valorTotal) {
         this.valorTotal.set(valorTotal);
+    }
+
+    public String getVeiculoPlaca() {
+        return veiculoPlaca.get();
+    }
+
+    public void setVeiculoPlaca(String veiculoPlaca) {
+        this.veiculoPlaca.set(veiculoPlaca);
+    }
+
+    public String getClienteNome() {
+        return clienteNome.get();
+    }
+
+    public void setClienteNome(String clienteNome) {
+        this.clienteNome.set(clienteNome);
     }
 }

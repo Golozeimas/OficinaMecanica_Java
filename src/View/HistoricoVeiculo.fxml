@@ -79,6 +79,7 @@
                 <HBox spacing="10">
                     <Label style="-fx-font-weight: bold;" text="Total de Serviços:" />
                     <Label fx:id="lblTotalServicos" text="0" />
+                    <Label fx:id="lblValorTotal" text="0"/>
                 </HBox>
                 <HBox spacing="10" />
             </VBox>
