@@ -82,7 +82,34 @@ public class OrdemServicoDAO {
     }
 
     public static double calcularValorTotalVeiculo(String idVeiculo) {
-        return 2.2;
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        double total = 0;
+
+        try {
+            // faz o calculo da quantidade vezes o preço unitário
+            String sql = "SELECT SUM(o.valor_mao_obra + COALESCE((SELECT SUM(op.quantidade * op.preco_unitario) " +
+                    "FROM ordem_peca op WHERE op.id_ordem = o.id_ordem), 0)) as total " +
+                    "FROM ordem_servico o " +
+                    "WHERE o.id_veiculo = ?";
+
+            stmt = conexao.prepareStatement(sql);
+            // passa para inteiro a String
+            stmt.setInt(1, Integer.parseInt(idVeiculo));
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                total = rs.getDouble("total");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao calcular total: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt, rs);
+        }
+
+     return total;
     }
 
 }

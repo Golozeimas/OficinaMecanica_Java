@@ -25,6 +25,11 @@ import java.util.ResourceBundle;
 public class PainelController implements Initializable {
 
     @FXML
+    void irParaAdicionar(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/view/AdicionarClientes.fxml");
+    }
+
+    @FXML
     private TableColumn<Cliente, String> colCpf;
 
     @FXML
