@@ -7,9 +7,14 @@ import Model.Veiculo;
 import Templates.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -100,6 +105,7 @@ public class HistoricoVeiculoController {
 
         if (sucesso){
             alertas.mostrarConfirmacao("Ordem apagada com sucesso!");
+            carregarOrdens();
         }else{
             alertas.mostrarErro("Ordem não foi apagada, tentar novamente!");
         }
@@ -110,11 +116,6 @@ public class HistoricoVeiculoController {
     @FXML
     void novaOrdemServico(ActionEvent event) throws IOException{
         MudarTela.trocarJanela(event, "/View/CriarOrdemServico.fxml");
-    }
-
-    @FXML
-    void verDetalhes(ActionEvent event) {
-
     }
 
     @FXML
