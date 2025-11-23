@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DetalhesOrdemServicoController">
 
     <top>
@@ -28,6 +29,7 @@
     </top>
 
     <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
         <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 30;">
 
             <!-- Informações da Ordem -->
@@ -112,6 +114,7 @@
             </HBox>
 
         </VBox>
+        </ScrollPane>
     </center>
 
 </BorderPane>

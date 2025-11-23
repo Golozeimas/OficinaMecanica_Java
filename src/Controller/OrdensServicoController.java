@@ -7,11 +7,16 @@ import Templates.Alertas;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -114,8 +119,28 @@ public class OrdensServicoController implements Initializable {
     }
 
     @FXML
-    void verDetalhes(ActionEvent event) {
+    void verDetalhes(ActionEvent event) throws IOException {
+        OrdemDeServico ordemSelecionada = tabelaOrdens.getSelectionModel().getSelectedItem();
 
+        if (ordemSelecionada == null) {
+            alertas.mostrarErro("Selecione uma ordem de serviço para ver detalhes!");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/DetalhesOrdemServico.fxml"));
+        Parent root = loader.load();
+
+        DetalhesOrdemServicoController controller = loader.getController();
+        controller.carregarDadosOrdem(ordemSelecionada);
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setFullScreen(true);
+        stage.show();
+
+        // Redirecionar para tela de detalhes/edição
+        alertas.mostrarConfirmacao("Detalhes da ordem #" + ordemSelecionada.getIdOrdem() + " serão exibidos!");
     }
 
     @FXML

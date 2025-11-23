@@ -1,5 +1,11 @@
 package Controller;
 
+import DB.OrdemServicoDAO;
+import Model.ItemPeca;
+import Model.MudarTela;
+import Model.OrdemDeServico;
+import Templates.Alertas;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -7,22 +13,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public class DetalhesOrdemServicoController {
 
     @FXML
-    private TableColumn<?, ?> colPecaNome;
+    private TableColumn<ItemPeca, String> colPecaNome;
 
     @FXML
-    private TableColumn<?, ?> colPrecoUnit;
+    private TableColumn<ItemPeca, String> colPrecoUnit;
 
     @FXML
-    private TableColumn<?, ?> colQuantidade;
+    private TableColumn<ItemPeca, String> colQuantidade;
 
     @FXML
-    private TableColumn<?, ?> colTotal;
+    private TableColumn<ItemPeca, String> colTotal;
 
     @FXML
-    private ComboBox<?> comboStatus;
+    private ComboBox<String> comboStatus;
 
     @FXML
     private Label lblCliente;
@@ -52,16 +60,63 @@ public class DetalhesOrdemServicoController {
     private Label lblVeiculo;
 
     @FXML
-    private TableView<?> tabelaPecas;
+    private TableView<ItemPeca> tabelaPecas;
 
-    @FXML
-    void atualizarStatus(ActionEvent event) {
+    private OrdemDeServico ordemAtual;
+    private Alertas alertas = new Alertas();
 
+    public void carregarDadosOrdem(OrdemDeServico ordem) {
+        this.ordemAtual = ordem;
+
+        lblTitulo.setText("Detalhes da Ordem de Serviço #" + ordem.getIdOrdem());
+
+        lblVeiculo.setText(ordem.getVeiculoPlaca());
+        lblCliente.setText(ordem.getClienteNome());
+        lblDataAbertura.setText(ordem.getDataAbertura());
+        lblDataFinalizacao.setText(ordem.getDataFinalizacao());
+        lblDescricao.setText(ordem.getDescricao());
+
+        comboStatus.setItems(FXCollections.observableArrayList(
+                "Em Serviço", "Aguardando Peças", "Pronto para Entrega", "Finalizado"
+        ));
+        comboStatus.setValue(ordem.getStatus());
+
+        colPecaNome.setCellValueFactory(data -> data.getValue().nomePecaProperty());
+        colQuantidade.setCellValueFactory(data -> data.getValue().quantidadeProperty());
+        colPrecoUnit.setCellValueFactory(data -> data.getValue().precoUnitarioProperty());
+        colTotal.setCellValueFactory(data -> data.getValue().totalProperty());
+
+        tabelaPecas.setItems(OrdemServicoDAO.listarPecasDaOrdem(ordem.getIdOrdem()));
     }
 
     @FXML
-    void voltar(ActionEvent event) {
+    void atualizarStatus(ActionEvent event) {
+        String novoStatus = comboStatus.getValue();
 
+        if (novoStatus == null) {
+            alertas.mostrarErro("Selecione um status!");
+            return;
+        }
+
+
+          boolean sucesso = OrdemServicoDAO.atualizarStatus(ordemAtual.getIdOrdem(), novoStatus);
+
+            if (sucesso) {
+                alertas.mostrarConfirmacao("Status atualizado com sucesso!");
+                ordemAtual.setStatus(novoStatus);
+
+                // Se finalizou, atualizar data
+                if (novoStatus.equals("Finalizado")) {
+                    lblDataFinalizacao.setText(java.time.LocalDateTime.now().toString());
+                }
+            } else {
+                alertas.mostrarErro("Erro ao atualizar status!");
+            }
+    }
+
+    @FXML
+    void voltar(ActionEvent event) throws IOException {
+            MudarTela.trocarJanela(event, "/View/PainelOrdensServico.fxml");
     }
 
 }

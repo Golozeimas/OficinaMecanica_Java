@@ -1,5 +1,6 @@
 package DB;
 
+import Model.ItemPeca;
 import Model.OrdemDeServico;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -220,6 +221,73 @@ public class OrdemServicoDAO {
     }
 
 
+    public static ObservableList<ItemPeca> listarPecasDaOrdem(String idOrdem) {
+        ObservableList<ItemPeca> listaPecas = FXCollections.observableArrayList();
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT op.id_peca, p.nome_peca, op.quantidade, op.preco_unitario, " +
+                    "(op.quantidade * op.preco_unitario) as total " +
+                    "FROM ordem_peca op " +
+                    "INNER JOIN peca p ON op.id_peca = p.id_peca " +
+                    "WHERE op.id_ordem = ?";
+
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(idOrdem));
+            rs = stmt.executeQuery();
+
+            DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+
+            while (rs.next()) {
+                ItemPeca item = new ItemPeca(
+                        rs.getString("id_peca"),
+                        rs.getString("nome_peca"),
+                        rs.getString("quantidade"),
+                        df.format(rs.getDouble("preco_unitario")),
+                        df.format(rs.getDouble("total"))
+                );
+                listaPecas.add(item);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar peças da ordem: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt, rs);
+        }
+
+        return listaPecas;
+    }
+
+    public static boolean atualizarStatus(String idOrdem, String novoStatus) {
+        Connection conexao = ConexaoComBanco.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            String sql = "UPDATE ordem_servico SET status = ?";
+
+            // Se finalizar, adiciona data de finalização
+            if (novoStatus.equals("Finalizado")) {
+                sql += ", data_finalizacao = NOW()";
+            }
+
+            sql += " WHERE id_ordem = ?";
+
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, novoStatus);
+            stmt.setInt(2, Integer.parseInt(idOrdem));
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar status: " + e.getMessage());
+            return false;
+        } finally {
+            ConexaoComBanco.fechaConexao(conexao, stmt);
+        }
+    }
 }
 
 
