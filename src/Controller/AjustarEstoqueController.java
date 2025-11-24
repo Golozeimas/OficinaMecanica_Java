@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Peca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -33,4 +34,7 @@ public class AjustarEstoqueController {
 
     }
 
+    public void carregarPeca(Peca pecaSelecionada) {
+
+    }
 }

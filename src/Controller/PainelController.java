@@ -116,18 +116,18 @@ public class PainelController implements Initializable {
     }
 
     @FXML
-    void irParaPecas(ActionEvent event) {
-
+    void irParaPecas(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event,"/View/PainelPecas.fxml" );
     }
 
     @FXML
-    void irParaRelatorios(ActionEvent event) {
-
+    void irParaRelatorios(ActionEvent event) throws IOException{
+    //MudarTela.trocarJanela(event, "/View/Relatorios.fxml");
     }
 
     @FXML
-    void irParaAgendamentos(ActionEvent event) {
-
+    void irParaAgendamentos(ActionEvent event) throws IOException {
+    //MudarTela.trocarJanela(event, "/View/Agendamentos.fxml");
     }
 
     @FXML

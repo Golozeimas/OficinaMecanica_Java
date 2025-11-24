@@ -1,16 +1,23 @@
 package Controller;
 
 import DB.PecaDAO;
+import Model.MudarTela;
 import Model.Peca;
 import Templates.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -82,24 +89,55 @@ public class PecasController implements Initializable {
 
     @FXML
     void ajustarEstoque(ActionEvent event) {
+        Peca pecaSelecionada = tabelaPecas.getSelectionModel().getSelectedItem();
+        if (pecaSelecionada == null) {
+            alertas.mostrarErro("Selecione uma peça para ajustar o estoque!");
+            return;
+        }
 
-    }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AjustarEstoque.fxml"));
+            Parent root = loader.load();
 
-    @FXML
-    void buscar(ActionEvent event) {
+            AjustarEstoqueController controller = loader.getController();
+            controller.carregarPeca(pecaSelecionada);
 
+            Stage stage = new Stage();
+            stage.setTitle("Ajustar Estoque");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            carregarPecas();
+            verificarEstoqueBaixo();
+
+        } catch (IOException e) {
+            alertas.mostrarErro("Erro ao abrir tela de ajuste!");
+        }
     }
 
     @FXML
     void excluirPeca(ActionEvent event) {
+        Peca pecaSelecionada = tabelaPecas.getSelectionModel().getSelectedItem();
+        if (pecaSelecionada == null) {
+            alertas.mostrarErro("Selecione uma peça para excluir!");
+            return;
+        }
 
+        boolean sucesso = PecaDAO.deletarPeca(pecaSelecionada.getIdPeca());
+        if (sucesso) {
+            alertas.mostrarErro("Peça excluída com sucesso!");
+            carregarPecas();
+            verificarEstoqueBaixo();
+        } else {
+            alertas.mostrarErro("Erro ao excluir peça!");
+        }
     }
 
     @FXML
-    void irParaAdicionar(ActionEvent event) {
-
+    void irParaAdicionar(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/AdicionarPeca.fxml");
     }
-
     @FXML
     void irParaEditar(ActionEvent event) {
 
@@ -112,11 +150,6 @@ public class PecasController implements Initializable {
 
     @FXML
     void irParaVeiculos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void limparBusca(ActionEvent event) {
 
     }
 

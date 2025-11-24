@@ -104,11 +104,6 @@ public class OrdensServicoController implements Initializable {
     }
 
     @FXML
-    void filtrarPorStatus(ActionEvent event) {
-
-    }
-
-    @FXML
     void irParaNova(ActionEvent event) throws IOException {
         MudarTela.trocarJanela(event, "/View/CriarOrdemServico.fxml");
     }
