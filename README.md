@@ -100,9 +100,9 @@ DB_PASSWORD=sua_senha_aqui
 3. Localize a classe principal src/App.java e execute-a.
 
 ### Credenciais de Acesso Padrão
-Login: admin@oficina.com
+Login: admin@gmail.com
 
-Senha: admin123
+Senha: 1234
 
 ## Estrutura do Projeto
 O código está organizado seguindo o padrão MVC para facilitar a manutenção e escalabilidade:
