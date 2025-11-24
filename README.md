@@ -158,7 +158,7 @@ DB_PASSWORD=sua_senha_aqui
 
 2. Certifique-se de que as bibliotecas (JavaFX, MySQL Connector, iTextPDF, Dotenv) estão no classpath (.jar) ou configuradas via Maven/Gradle.
 
-Obs: Caso tenha dificuldade com a instalação do JavaFX, veja esse vídeo no youtube (https://www.youtube.com/watch?v=gd9Ds86gFI0)
+  Obs: Caso tenha dificuldade com a instalação do JavaFX, veja esse vídeo no youtube (https://www.youtube.com/watch?v=gd9Ds86gFI0)
 
 4. Localize a classe principal src/App.java e execute-a.
 
