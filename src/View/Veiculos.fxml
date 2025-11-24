@@ -57,7 +57,6 @@
     <center>
         <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20;">
 
-            <!-- Barra de Ferramentas -->
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <Button onAction="#irParaAdicionar" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Adicionar" />
                 <Button onAction="#irParaEditar" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />

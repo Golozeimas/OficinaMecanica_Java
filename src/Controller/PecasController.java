@@ -144,18 +144,18 @@ public class PecasController implements Initializable {
     }
 
     @FXML
-    void irParaOrdens(ActionEvent event) {
-
+    void irParaOrdens(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event, "/View/PainelOrdensServicos.fxml");
     }
 
     @FXML
-    void irParaVeiculos(ActionEvent event) {
-
+    void irParaVeiculos(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event, "/View/Veiculos.fxml");
     }
 
     @FXML
-    void voltarParaPainel(ActionEvent event) {
-
+    void voltarParaPainel(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
     }
 
 }

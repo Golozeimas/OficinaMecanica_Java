@@ -46,9 +46,6 @@ public class OrdensServicoController implements Initializable {
     private TableColumn<OrdemDeServico, String> colVeiculo;
 
     @FXML
-    private ComboBox<String> comboStatus;
-
-    @FXML
     private Label lblTotal;
 
     @FXML
@@ -68,10 +65,6 @@ public class OrdensServicoController implements Initializable {
         colDataAbertura.setCellValueFactory(data -> data.getValue().dataAberturaProperty());
         colValorTotal.setCellValueFactory(data -> data.getValue().valorTotalProperty());
 
-        comboStatus.setItems(FXCollections.observableArrayList(
-                "Todos", "Em Serviço", "Aguardando Peças", "Pronto para Entrega", "Finalizado"
-        ));
-        comboStatus.setValue("Todos");
 
         carregarOrdens();
     }

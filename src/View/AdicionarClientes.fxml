@@ -53,10 +53,8 @@
                     <TextField fx:id="txtCpf" promptText="000.000.000-00" style="-fx-font-size: 14; -fx-padding: 10;" />
                 </VBox>
 
-                <!-- Campo Email (opcional) -->
                 <VBox spacing="5" />
 
-                <!-- Campo Endereço (opcional) -->
                 <VBox spacing="5" />
 
                 <HBox alignment="CENTER" spacing="15" style="-fx-padding: 20 0 0 0;">

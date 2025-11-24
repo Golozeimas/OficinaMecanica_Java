@@ -27,12 +27,7 @@ public class AdicionarPecaController {
     Alertas alertas = new Alertas();
 
     @FXML
-    void limparCampos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void salvarPeca(ActionEvent event) {
+    void salvarPeca(ActionEvent event) throws IOException {
         String nome = txtNome.getText().trim();
         String precoStr = txtPreco.getText().trim();
         String qtdStr = txtQuantidade.getText().trim();
@@ -55,7 +50,7 @@ public class AdicionarPecaController {
 
             if (sucesso) {
                 alertas.mostrarConfirmacao("Peça cadastrada com sucesso!");
-                limparCampos(event);
+                MudarTela.trocarJanela(event, "/View/PainelPecas.fxml");
             } else {
                 lblMensagem.setText("Erro ao cadastrar peça!");
             }

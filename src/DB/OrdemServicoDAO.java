@@ -10,11 +10,31 @@ import java.text.DecimalFormat;
 
 public class OrdemServicoDAO {
 
+    // Deletar ordem de serviço
     public static boolean deletarOrdem(String idOrdem) {
         Connection conexao = ConexaoComBanco.getConnection();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
+            // Primeiro, devolver as peças ao estoque
+            stmt = conexao.prepareStatement(
+                    "SELECT id_peca, quantidade FROM ordem_peca WHERE id_ordem = ?"
+            );
+            stmt.setInt(1, Integer.parseInt(idOrdem));
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String idPeca = rs.getString("id_peca");
+                int quantidade = rs.getInt("quantidade");
+                // Devolver ao estoque
+                PecaDAO.ajustarEstoque(idPeca, quantidade);
+            }
+
+            // Fechar statement anterior
+            ConexaoComBanco.fechaConexao(null, stmt, rs);
+
+            // Agora deletar a ordem (o CASCADE vai deletar ordem_peca automaticamente)
             stmt = conexao.prepareStatement("DELETE FROM ordem_servico WHERE id_ordem=?");
             stmt.setInt(1, Integer.parseInt(idOrdem));
 
@@ -25,7 +45,7 @@ public class OrdemServicoDAO {
             System.out.println("Erro ao deletar ordem: " + e.getMessage());
             return false;
         } finally {
-            ConexaoComBanco.fechaConexao(conexao, stmt);
+            ConexaoComBanco.fechaConexao(conexao, stmt, rs);
         }
     }
 
@@ -161,7 +181,7 @@ public class OrdemServicoDAO {
         return listaOrdens;
     }
 
-    // cria ordem e vai retornar um id gerado
+    // Criar nova ordem de serviço
     public static int criarOrdem(String idVeiculo, String descricao, double valorMaoObra, String status) {
         Connection conexao = ConexaoComBanco.getConnection();
         PreparedStatement stmt = null;

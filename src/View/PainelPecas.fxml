@@ -59,7 +59,7 @@
     <center>
         <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20;">
 
-            <!-- Barra de Ferramentas -->
+
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <Button onAction="#irParaAdicionar" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="+ Adicionar Peça" />
                 <Button onAction="#irParaEditar" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />
@@ -67,11 +67,8 @@
                 <Button onAction="#ajustarEstoque" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Ajustar Estoque" />
                 <Separator orientation="VERTICAL" />
                 <TextField fx:id="txtBusca" prefWidth="250.0" promptText="Buscar peça..." />
-                <Button onAction="#buscar" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-                <Button onAction="#limparBusca" text="Limpar" />
             </HBox>
 
-            <!-- Tabela de Peças -->
             <TableView fx:id="tabelaPecas" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />

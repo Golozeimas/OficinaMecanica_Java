@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -21,50 +20,21 @@ import java.util.ResourceBundle;
 
 public class CriarOrdemServicoController implements Initializable {
 
-    @FXML
-    private TableColumn<ItemPeca, String> colPecaNome;
-
-    @FXML
-    private TableColumn<ItemPeca, String> colPecaPreco;
-
-    @FXML
-    private TableColumn<ItemPeca, String> colPecaQtd;
-
-    @FXML
-    private TableColumn<ItemPeca, String> colPecaTotal;
-
-    @FXML
-    private ComboBox<Cliente> comboCliente;
-
-    @FXML
-    private ComboBox<Peca> comboPeca;
-
-    @FXML
-    private ComboBox<String> comboStatus;
-
-    @FXML
-    private ComboBox<Veiculo> comboVeiculo;
-
-    @FXML
-    private Label lblMaoObra;
-
-    @FXML
-    private Label lblPecas;
-
-    @FXML
-    private Label lblTotal;
-
-    @FXML
-    private TableView<ItemPeca> tabelaPecas;
-
-    @FXML
-    private TextArea txtDescricao;
-
-    @FXML
-    private TextField txtMaoObra;
-
-    @FXML
-    private TextField txtQuantidade;
+    @FXML private ComboBox<Cliente> comboCliente;
+    @FXML private ComboBox<Veiculo> comboVeiculo;
+    @FXML private TextArea txtDescricao;
+    @FXML private TextField txtMaoObra;
+    @FXML private ComboBox<String> comboStatus;
+    @FXML private ComboBox<Peca> comboPeca;
+    @FXML private TextField txtQuantidade;
+    @FXML private TableView<ItemPeca> tabelaPecas;
+    @FXML private TableColumn<ItemPeca, String> colPecaNome;
+    @FXML private TableColumn<ItemPeca, String> colPecaQtd;
+    @FXML private TableColumn<ItemPeca, String> colPecaPreco;
+    @FXML private TableColumn<ItemPeca, String> colPecaTotal;
+    @FXML private Label lblMaoObra;
+    @FXML private Label lblPecas;
+    @FXML private Label lblTotal;
 
     private ObservableList<ItemPeca> pecasAdicionadas = FXCollections.observableArrayList();
     private Alertas alertas = new Alertas();
@@ -72,10 +42,8 @@ public class CriarOrdemServicoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         comboCliente.setItems(ClienteDAO.listarClientes());
         configurarComboCliente();
-
 
         comboPeca.setItems(PecaDAO.listarPecas());
         configurarComboPeca();
@@ -91,7 +59,6 @@ public class CriarOrdemServicoController implements Initializable {
         colPecaTotal.setCellValueFactory(data -> data.getValue().totalProperty());
         tabelaPecas.setItems(pecasAdicionadas);
     }
-
 
     private void configurarComboCliente() {
         comboCliente.setButtonCell(new ListCell<Cliente>() {
@@ -183,6 +150,15 @@ public class CriarOrdemServicoController implements Initializable {
         }
     }
 
+    @FXML
+    void removerPeca(ActionEvent event) {
+        ItemPeca itemSelecionado = tabelaPecas.getSelectionModel().getSelectedItem();
+        if (itemSelecionado != null) {
+            pecasAdicionadas.remove(itemSelecionado);
+            atualizarResumo();
+        }
+    }
+
     private void atualizarResumo() {
         try {
             double maoObra = txtMaoObra.getText().isEmpty() ? 0 : Double.parseDouble(txtMaoObra.getText().replace(",", "."));
@@ -201,10 +177,8 @@ public class CriarOrdemServicoController implements Initializable {
         }
     }
 
-
     @FXML
     void criarOrdem(ActionEvent event) {
-
         if (comboVeiculo.getValue() == null) {
             alertas.mostrarErro("Selecione um veículo!");
             return;
@@ -217,7 +191,6 @@ public class CriarOrdemServicoController implements Initializable {
         try {
             double maoObra = txtMaoObra.getText().isEmpty() ? 0 : Double.parseDouble(txtMaoObra.getText().replace(",", "."));
 
-            // Criar ordem
             int idOrdem = OrdemServicoDAO.criarOrdem(
                     comboVeiculo.getValue().getId(),
                     txtDescricao.getText(),
@@ -248,19 +221,8 @@ public class CriarOrdemServicoController implements Initializable {
         }
     }
 
-
-    @FXML
-    void removerPeca(ActionEvent event) {
-        ItemPeca itemSelecionado = tabelaPecas.getSelectionModel().getSelectedItem();
-        if (itemSelecionado != null) {
-            pecasAdicionadas.remove(itemSelecionado);
-            atualizarResumo();
-        }
-    }
-
     @FXML
     void voltar(ActionEvent event) throws IOException {
         MudarTela.trocarJanela(event, "/View/PainelOrdensServico.fxml");
     }
-
 }
