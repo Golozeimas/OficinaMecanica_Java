@@ -53,6 +53,7 @@ public class CriarOrdemServicoController implements Initializable {
         ));
         comboStatus.setValue("Em Serviço");
 
+        // Configurar tabela de peças
         colPecaNome.setCellValueFactory(data -> data.getValue().nomePecaProperty());
         colPecaQtd.setCellValueFactory(data -> data.getValue().quantidadeProperty());
         colPecaPreco.setCellValueFactory(data -> data.getValue().precoUnitarioProperty());
@@ -199,7 +200,6 @@ public class CriarOrdemServicoController implements Initializable {
             );
 
             if (idOrdem > 0) {
-                // Adicionar peças
                 for (ItemPeca item : pecasAdicionadas) {
                     double precoUnit = Double.parseDouble(item.getPrecoUnitario().replace("R$", "").replace(".", "").replace(",", ".").trim());
                     OrdemServicoDAO.adicionarPecaNaOrdem(
