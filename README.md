@@ -150,7 +150,9 @@ Por segurança, as senhas do banco de dados não estão no código.
 
 2. Adicione o seguinte conteúdo, ajustando a senha para a do seu MySQL:
 DB_URL=jdbc:mysql://localhost:3306/oficina
+
 DB_USER=root
+
 DB_PASSWORD=sua_senha_aqui
 
 ### Passo 3: Executar o Projeto
