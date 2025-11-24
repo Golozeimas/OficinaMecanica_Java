@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS administrador (
 
 -- Inserir admin padrão
 INSERT INTO administrador (email_adm, senha) VALUES ('admin@oficina.com', 'admin123');
+-- (O restante do script de criação das tabelas cliente, veiculo, peca, ordem_servico, ordem_peca e pagamento deve ser executado aqui)
 ```
 ### Passo 2: Configuração de Variáveis de Ambiente (.env)
 Por segurança, as senhas do banco de dados não estão no código.
@@ -87,5 +88,29 @@ Por segurança, as senhas do banco de dados não estão no código.
 1. Crie um arquivo chamado .env na raiz do projeto (ao lado da pasta src).
 
 2. Adicione o seguinte conteúdo, ajustando a senha para a do seu MySQL:
+DB_URL=jdbc:mysql://localhost:3306/oficina
+DB_USER=root
+DB_PASSWORD=sua_senha_aqui
 
--- (O restante do script de criação das tabelas cliente, veiculo, peca, ordem_servico, ordem_peca e pagamento deve ser executado aqui)
+### Passo 3: Executar o Projeto
+1. Abra o projeto na sua IDE.
+2. Certifique-se de que as bibliotecas (JavaFX, MySQL Connector, iTextPDF, Dotenv) estão no classpath ou configuradas via Maven/Gradle.
+3. Localize a classe principal src/App.java e execute-a.
+
+### Credenciais de Acesso Padrão
+Login: admin@oficina.com
+Senha: admin123
+
+## Estrutura do Projeto
+O código está organizado seguindo o padrão MVC para facilitar a manutenção e escalabilidade:
+
+Oficina_POO/
+├── src/
+│   ├── Controller/       # Lógica de controle das telas (ex: LoginController, VeiculoController)
+│   ├── Model/            # Classes de entidade e regras de negócio (ex: Cliente, Peca)
+│   ├── View/             # Arquivos .fxml da interface gráfica
+│   ├── DB/               # Conexão com banco e classes DAO (Data Access Object)
+│   ├── Templates/        # Classes utilitárias (ex: Alertas)
+│   └── App.java          # Classe principal que inicia a aplicação
+├── .env                  # Arquivo de configuração (não versionado)
+└── README.md             # Documentação do projeto
