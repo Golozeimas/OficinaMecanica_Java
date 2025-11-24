@@ -94,23 +94,33 @@ DB_PASSWORD=sua_senha_aqui
 
 ### Passo 3: Executar o Projeto
 1. Abra o projeto na sua IDE.
+
 2. Certifique-se de que as bibliotecas (JavaFX, MySQL Connector, iTextPDF, Dotenv) estão no classpath ou configuradas via Maven/Gradle.
+
 3. Localize a classe principal src/App.java e execute-a.
 
 ### Credenciais de Acesso Padrão
 Login: admin@oficina.com
+
 Senha: admin123
 
 ## Estrutura do Projeto
 O código está organizado seguindo o padrão MVC para facilitar a manutenção e escalabilidade:
 
 Oficina_POO/
+
 ├── src/
+
 │   ├── Controller/       # Lógica de controle das telas (ex: LoginController, VeiculoController)
+
 │   ├── Model/            # Classes de entidade e regras de negócio (ex: Cliente, Peca)
+
 │   ├── View/             # Arquivos .fxml da interface gráfica
+
 │   ├── DB/               # Conexão com banco e classes DAO (Data Access Object)
+
 │   ├── Templates/        # Classes utilitárias (ex: Alertas)
+
 │   └── App.java          # Classe principal que inicia a aplicação
 ├── .env                  # Arquivo de configuração (não versionado)
 └── README.md             # Documentação do projeto
