@@ -57,7 +57,6 @@ public class RelatorioController implements Initializable {
             File file = fileChooser.showSaveDialog(stage);
 
             if (file != null) {
-
                 GeradorPDF gerador = new GeradorPDF();
                 gerador.gerarRelatorioFinanceiro(ordens, file.getAbsolutePath());
                 alertas.mostrarConfirmacao("Relatório gerado com sucesso em:\n" + file.getAbsolutePath());

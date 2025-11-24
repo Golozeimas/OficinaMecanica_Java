@@ -53,15 +53,13 @@ public class CriarOrdemServicoController implements Initializable {
         ));
         comboStatus.setValue("Em Serviço");
 
-        // Configurar tabela de peças
         colPecaNome.setCellValueFactory(data -> data.getValue().nomePecaProperty());
         colPecaQtd.setCellValueFactory(data -> data.getValue().quantidadeProperty());
         colPecaPreco.setCellValueFactory(data -> data.getValue().precoUnitarioProperty());
         colPecaTotal.setCellValueFactory(data -> data.getValue().totalProperty());
         tabelaPecas.setItems(pecasAdicionadas);
 
-        // Adicionar listener para atualizar totais quando a mão de obra mudar
-        txtMaoObra.textProperty().addListener((observable, oldValue, newValue) -> atualizarResumo());
+       txtMaoObra.textProperty().addListener((observable, oldValue, newValue) -> atualizarResumo());
     }
 
     private void configurarComboCliente() {
