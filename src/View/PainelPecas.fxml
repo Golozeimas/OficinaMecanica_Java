@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -47,8 +46,7 @@
             <Button maxWidth="Infinity" onAction="#irParaVeiculos" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Veiculos" />
             <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Peças" />
             <Button maxWidth="Infinity" onAction="#irParaOrdens" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Ordens de serviço" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Configurações" />
+            <Button maxWidth="Infinity" onAction="#irParaRelatorios" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
 
             <Region VBox.vgrow="ALWAYS" />
 
@@ -65,8 +63,6 @@
                 <Button onAction="#irParaEditar" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Editar" />
                 <Button onAction="#excluirPeca" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Excluir" />
                 <Button onAction="#ajustarEstoque" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Ajustar Estoque" />
-                <Separator orientation="VERTICAL" />
-                <TextField fx:id="txtBusca" prefWidth="250.0" promptText="Buscar peça..." />
             </HBox>
 
             <TableView fx:id="tabelaPecas" VBox.vgrow="ALWAYS">

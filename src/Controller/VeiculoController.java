@@ -98,22 +98,17 @@ public class VeiculoController implements Initializable {
 
     @FXML
     void irParaOrdens(ActionEvent event) throws IOException{
-    MudarTela.trocarJanela(event, "/View/PainelOrdensServicos.fxml");
+    MudarTela.trocarJanela(event, "/View/PainelOrdensServico.fxml");
     }
 
     @FXML
-    void irParaPecas(ActionEvent event) {
-
+    void irParaPecas(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event, "/View/PainelPecas.fxml");
     }
 
     @FXML
-    void irParaRelatorios(ActionEvent event) {
-
-    }
-
-    @FXML
-    void irParaAgendamentos(ActionEvent event) {
-
+    void irParaRelatorios(ActionEvent event) throws IOException {
+    MudarTela.trocarJanela(event, "/View/Relatorios.fxml");
     }
 
     @FXML

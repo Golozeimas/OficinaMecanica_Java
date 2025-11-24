@@ -44,10 +44,9 @@
 
             <Button maxWidth="Infinity" onAction="#voltarParaPainel" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Clientes" />
             <Button maxWidth="Infinity" onAction="#irParaVeiculos" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Veiculos" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Peças" />
+            <Button maxWidth="Infinity" onAction="#irParaPecas" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Peças" />
             <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Ordens de serviço" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
-            <Button maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Configurações" />
+            <Button maxWidth="Infinity" onAction="#irParaRelatorios" prefHeight="40.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Relatórios" />
 
             <Region VBox.vgrow="ALWAYS" />
 

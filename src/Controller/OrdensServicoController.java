@@ -136,4 +136,15 @@ public class OrdensServicoController implements Initializable {
         MudarTela.trocarJanela(event, "/View/PainelAdministrativo.fxml");
     }
 
+    @FXML
+    void irParaRelatorios(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/Relatorios.fxml");
+    }
+
+
+    @FXML
+    void irParaPecas(ActionEvent event) throws IOException {
+        MudarTela.trocarJanela(event, "/View/PainelPecas.fxml");
+    }
+
 }

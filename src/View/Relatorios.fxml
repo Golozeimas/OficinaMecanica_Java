@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RelatorioController">
+
+    <top>
+        <VBox style="-fx-background-color: #2c3e50;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #34495e; -fx-padding: 15;">
+                <Button onAction="#voltarParaPainel" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="← Voltar" />
+                <Label text="Relatórios Financeiros" textFill="WHITE">
+                    <font> <Font name="System Bold" size="20.0" /> </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: white;">
+
+            <Label text="Resumo Geral" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+            <HBox spacing="20">
+                <VBox style="-fx-background-color: #27ae60; -fx-padding: 20; -fx-background-radius: 10;" prefWidth="250">
+                    <Label text="Faturamento Total" textFill="WHITE" style="-fx-font-size: 14;"/>
+                    <Label fx:id="lblFaturamento" text="R$ 0,00" textFill="WHITE" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox style="-fx-background-color: #2980b9; -fx-padding: 20; -fx-background-radius: 10;" prefWidth="250">
+                    <Label text="Ordens Finalizadas" textFill="WHITE" style="-fx-font-size: 14;"/>
+                    <Label fx:id="lblOrdensFinalizadas" text="0" textFill="WHITE" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>
