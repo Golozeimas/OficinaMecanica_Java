@@ -244,7 +244,7 @@ DB_PASSWORD=sua_senha_aqui
 **Via IDE:**
 1. Abra o projeto na sua IDE
 2. Configure o JavaFX SDK (se necessário)
-Caso o JavaFX, não funcione, recomendo ver esse vídeo (https://www.youtube.com/watch?v=gd9Ds86gFI0)
+<br>Caso o JavaFX, não funcione, recomendo ver esse vídeo (https://www.youtube.com/watch?v=gd9Ds86gFI0)
 3. Execute a classe `App.java`
 
 **Via Linha de Comando:**
